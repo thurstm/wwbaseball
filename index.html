@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wausau West Warrior Baseball</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .team-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .team-motto {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #002244;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0;
+        }
+        
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #004488;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/api/placeholder/1200/500');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: #ff9900;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .hero-btn:hover {
+            background-color: #e68a00;
+        }
+        
+        /* Accolades */
+        .accolades {
+            text-align: center;
+            background-color: #002244;
+            color: white;
+            padding: 25px 15px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .accolades h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            display: inline-block;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+        
+        .accolades p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .state-appearances {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .state-year {
+            background-color: #003366;
+            color: #fff;
+            border: 2px solid #ff9900;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .state-year:hover {
+            transform: scale(1.1);
+            background-color: #ff9900;
+            color: #003366;
+        }
+        
+        /* Schedule Section */
+        .schedule-container {
+            height: 600px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .schedule-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* News Section */
+        .news-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .news-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #002244;
+        }
+        
+        /* Team Section */
+        .coach-list, .roster-list {
+            margin-bottom: 20px;
+        }
+        
+        .coach-card, .player-card, .alumni-card, .sponsor-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .coach-info, .player-info, .alumni-info, .sponsor-info {
+            margin-left: 15px;
+        }
+        
+        .coach-name, .player-name, .alumni-name, .sponsor-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #003366;
+        }
+        
+        .coach-position, .player-position, .player-number, .player-year, .alumni-year, .alumni-achievements, .sponsor-level, .sponsor-years {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Alumni Section */
+        .alumni-achievements {
+            margin-top: 5px;
+        }
+        
+        .alumni-category {
+            margin-bottom: 25px;
+        }
+        
+        .alumni-category h3 {
+            color: #003366;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .alumni-list {
+            margin-bottom: 20px;
+        }
+        
+        /* Sponsors Section */
+        .sponsor-tier {
+            margin-bottom: 30px;
+        }
+        
+        .sponsor-tier-title {
+            font-size: 1.4rem;
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .sponsor-card {
+            justify-content: space-between;
+        }
+        
+        .sponsor-logo {
+            flex: 0 0 100px;
+            height: 100px;
+            background-color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        
+        .sponsor-info {
+            flex: 1;
+        }
+        
+        .sponsor-description {
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        
+        /* Social Media Section */
+        .facebook-container {
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        /* Contact Section */
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-info a {
+            color: #003366;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #002244;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-name {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .state-appearances {
+                gap: 10px;
+            }
+            
+            .state-year {
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="team-name">Wausau West Warrior Baseball</h1>
+            <p class="team-motto">Tradition • Pride • Excellence</p>
+        </div>
+    </header>
+    
+    <nav role="navigation">
+        <ul>
+            <img src="/api/placeholder/50/50" alt="Team Logo" style="vertical-align: middle; margin-right: 10px;" />
+            <li><a href="#home" aria-label="Home">>Home</a></li>
+            <li><a href="#schedule" aria-label="Schedule">Schedule</a></li>
+            <li><a href="#team" aria-label="Team">Team</a></li>
+            <li><a href="#alumni" aria-label="Alumni">Alumni</a></li>
+            <li><a href="#sponsors" aria-label="Sponsors">Sponsors</a></li>
+            <li><a href="#contact" aria-label="Contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero" id="home">
+        
+        <div class="accolades">
+            <h2>Warrior Baseball Legacy</h2>
+            <h3 style="text-align: center;">Wausau West has appeared at the WIAA state tournament 8 times</h3>
+            <div class="state-appearances">
+                <div class="state-year">1974</div>
+                <div class="state-year">1976</div>
+                <div class="state-year">1978</div>
+                <div class="state-year">1985</div>
+                <div class="state-year">1998</div>
+                <div class="state-year">1999</div>
+                <div class="state-year">2008</div>
+                <div class="state-year">2011</div>
+            </div>
+        </div>
+
+        <h1>Wausau West Warrior Baseball</h1>       
+        <p>Home of the Warriors - Wisconsin Valley Conference</p>
+<!--
+        <a href="#schedule" class="hero-btn">View Schedule</a>
+--> 
+    </div>
+
+      
+    <div class="container main-content">
+         
+        <section id="schedule">
+            <h2>Team Schedule</h2>
+            <div class="schedule-container">
+                <iframe src="https://www.wisconsinvalleyconference.org/g5-bin/client.cgi?cwellOnly=1&G5statusflag=view&schoolname=&school_id=6&G5button=13&G5genie=63&vw_schoolyear=1&vw_agl=6-1-15,&manual_access=1"></iframe>
+            </div>
+        </section>
+        
+        <section id="news">
+            <h2>Latest Facebook News</h2>
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsearch%2Fposts%2F%3Fq%3Dwausau%2520west%2520warrior%2520baseball&tabs=timeline&width=250&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="250" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </section>
+        
+        <section id="team">
+            <h2>Meet the Team</h2>
+            
+            <h3>Coaching Staff</h3>
+            <div class="coach-list">
+                <div class="coach-card">
+                    <img src="/api/placeholder/70/70" alt="Coach placeholder" />
+                    <div class="coach-info">
+                        <div class="coach-name">John Smith</div>
+                        <div class="coach-position">Head Coach</div>
+                    </div>
+                </div>
+                <div class="coach-card">
+                    <img src="/api/placeholder/70/70" alt="Coach placeholder" />
+                    <div class="coach-info">
+                        <div class="coach-name">Mike Johnson</div>
+                        <div class="coach-position">Assistant Coach</div>
+                    </div>
+                </div>
+                <div class="coach-card">
+                    <img src="/api/placeholder/70/70" alt="Coach placeholder" />
+                    <div class="coach-info">
+                        <div class="coach-name">Tom Williams</div>
+                        <div class="coach-position">JV Coach</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Varsity Roster</h3>
+            <div class="roster-list">
+                <div class="player-card">
+                    <img src="/api/placeholder/70/70" alt="Player placeholder" />
+                    <div class="player-info">
+                        <div class="player-name">James Wilson</div>
+                        <div class="player-position">Pitcher / Shortstop</div>
+                        <div class="player-number">#12</div>
+                        <div class="player-year">Senior</div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <img src="/api/placeholder/70/70" alt="Player placeholder" />
+                    <div class="player-info">
+                        <div class="player-name">Robert Garcia</div>
+                        <div class="player-position">Catcher</div>
+                        <div class="player-number">#24</div>
+                        <div class="player-year">Junior</div>
+                    </div>
+                </div>
+                <div class="player-card">
+                    <img src="/api/placeholder/70/70" alt="Player placeholder" />
+                    <div class="player-info">
+                        <div class="player-name">Michael Thompson</div>
+                        <div class="player-position">Outfield</div>
+                        <div class="player-number">#7</div>
+                        <div class="player-year">Senior</div>
+                    </div>
+                </div>
+                <!-- Add more players as needed -->
+            </div>
+        </section>
+        
+        <section id="alumni">
+            <h2>Notable Alumni</h2>
+            <p>Wausau West Baseball has a proud tradition of developing talented players who have earned recognition at state and collegiate levels.</p>
+            
+            <div class="alumni-category">
+                <h3>1st Team All-State</h3>
+                <div class="alumni-list">
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Payton Nelson</div>
+                            <div class="alumni-year">Class of 2017</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Dan Augustine</div>
+                            <div class="alumni-year">Class of 1999</div>
+                            <div class="alumni-achievements">Infield (IF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Dean Niewolny</div>
+                            <div class="alumni-year">Class of 1981</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alumni-category">
+                <h3>2nd Team All-State</h3>
+                <div class="alumni-list">
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Chandler Fochs</div>
+                            <div class="alumni-year">Class of 2018</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Brett Ziegel</div>
+                            <div class="alumni-year">Class of 2011</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Matt McDonald</div>
+                            <div class="alumni-year">Class of 1999</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Bob Jehn</div>
+                            <div class="alumni-year">Class of 1978</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alumni-category">
+                <h3>3rd Team All-State</h3>
+                <div class="alumni-list">
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Logan Grunenwald</div>
+                            <div class="alumni-year">Class of 2017</div>
+                            <div class="alumni-achievements">Infield (IF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Chandler Fochs</div>
+                            <div class="alumni-year">Class of 2017</div>
+                            <div class="alumni-achievements">Utility</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Payton Nelson</div>
+                            <div class="alumni-year">Class of 2016</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Robert DeWitt</div>
+                            <div class="alumni-year">Class of 1995</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Dean Niewalny</div>
+                            <div class="alumni-year">Class of 1980</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Tom Barnetzke</div>
+                            <div class="alumni-year">Class of 1981</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Dave Adamski</div>
+                            <div class="alumni-year">Class of 1978</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alumni-category">
+                <h3>Honorable Mention</h3>
+                <div class="alumni-list">
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Ethan Graham</div>
+                            <div class="alumni-year">Class of 2021</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Sam Sippel</div>
+                            <div class="alumni-year">Class of 2018</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Paul Weise</div>
+                            <div class="alumni-year">Class of 2016</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Peyton Nelson</div>
+                            <div class="alumni-year">Class of 2015</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">John Metzinger</div>
+                            <div class="alumni-year">Class of 2014</div>
+                            <div class="alumni-achievements">Infield (IF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Brett Ziegel</div>
+                            <div class="alumni-year">Class of 2010</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Mike Parman</div>
+                            <div class="alumni-year">Class of 2009</div>
+                            <div class="alumni-achievements">Infield (IF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Seth McMullen</div>
+                            <div class="alumni-year">Class of 2008</div>
+                            <div class="alumni-achievements">Utility</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Brant Koci</div>
+                            <div class="alumni-year">Class of 1993</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Kurt Chapman</div>
+                            <div class="alumni-year">Class of 1992</div>
+                            <div class="alumni-achievements">Shortstop (SS)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Mike Blaskowski</div>
+                            <div class="alumni-year">Class of 1983</div>
+                            <div class="alumni-achievements">Catcher (C)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Brad Resch</div>
+                            <div class="alumni-year">Class of 1983</div>
+                            <div class="alumni-achievements">Pitcher (P)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Tom Barnetzke</div>
+                            <div class="alumni-year">Class of 1980</div>
+                            <div class="alumni-achievements">Outfield (OF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Mark Heiting</div>
+                            <div class="alumni-year">Class of 1978</div>
+                            <div class="alumni-achievements">Infield (IF)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                            <div class="alumni-name">Todd Hoenesch</div>
+                            <div class="alumni-year">Class of 1976</div>
+                            <div class="alumni-achievements">Shortstop (SS)</div>
+                        </div>
+                    </div>
+                    <div class="alumni-card">
+                        <img src="/api/placeholder/70/70" alt="Alumni placeholder" />
+                        <div class="alumni-info">
+                                <div class="alumni-name">Dave Adamski</div>
+                                        <div class="alumni-year">Class of 1976</div>
+                                        <div class="alumni-achievements">Catcher (C)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+       <section id="sponsors">
+            <h2>Our Sponsors</h2>
+            <p>Wausau West Warrior Baseball would like to thank the following businesses for their generous support. Their contributions help fund equipment, travel expenses, and facility improvements.</p>            
+            <p style="margin-top: 20px;">Interested in becoming a sponsor? Contact our booster club president for more information about sponsorship opportunities.</p>
+        </section>
+        
+        <section id="social">
+            <h2>Social Media</h2>
+            <p>Follow us on Facebook for the latest updates, photos, and announcements!</p>
+            <div class="facebook-container">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsearch%2Ftop%3Fq%3Dwausau%2520west%2520warrior%2520baseball&tabs=timeline&width=500&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
+        </section>
+                         
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <p><strong>Wausau West High School</strong></p>
+                <p>1200 W Wausau Ave, Wausau, WI 54401</p>
+                <p>Athletic Office: (715) 555-1234</p>
+                <p>Email: <a href="mailto:baseball@wausauwesths.org">baseball@wausauwesths.org</a></p>
+                <p><strong>Head Coach:</strong> John Smith</p>
+                <p>Coach Email: <a href="mailto:coach.smith@wausauwesths.org">coach.smith@wausauwesths.org</a></p>
+            </div>
+        </section>
+    </div>
+                    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#team">Team</a>
+                <a href="#alumni">Alumni</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Wausau West Warrior Baseball. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+               
